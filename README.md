@@ -9,7 +9,7 @@ The experiment: can you still hear the sound as "moving?"
 Jonas Techmanski · jonas030405@gmail.com
 
 Eight variants are playable on headphones at
-[techmanskijonas.github.io/sonokinetic](https://techmanskijonas.github.io/sonokinetic/).
+[techmanskijonas.github.io/Sonokinetic](https://techmanskijonas.github.io/Sonokinetic/).
 
 ## Setup
 
