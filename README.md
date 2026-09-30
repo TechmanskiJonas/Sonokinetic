@@ -163,10 +163,9 @@ writes the audio, the monitor traces and the measured numbers into
 `docs/data/`.
 
 The page renders the ring at the geometry the blind sessions used, which is
-nine sources at two metres with allpass decorrelation and every source
-wandering 60 degrees at a quarter hertz. A plainer ring with fewer sources and
-no wander is a much weaker stimulus, so the demonstration would understate what
-the sessions found.
+nine sources at two metres with allpass decorrelation. A six-source ring with
+velvet decorrelation is a much weaker stimulus, so the demonstration would
+understate what the sessions found.
 
 Each variant is rendered unnormalised, loudness-matched to the untreated
 reference, then scaled together with every other variant by one common factor.

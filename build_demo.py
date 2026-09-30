@@ -33,15 +33,17 @@ SOFA = os.path.join(HERE, "hrtf", "mit_kemar_normal_pinna.sofa")
 PASSAGE_SECS = 20.0
 
 # The ring below is the configuration the blind sessions in sessions/ were run
-# on, rather than a minimal one assembled for the page. Nine sources at two
-# metres, allpass decorrelation, and every source wandering 60 degrees at a
-# quarter hertz. Sessions one and two returned "circling" at confidence 6 on
-# it. A plainer six-source velvet ring with no wander is a much weaker stimulus
+# on, rather than a minimal one assembled for the page: nine sources at two
+# metres with allpass decorrelation. Sessions one and two returned "circling"
+# at confidence 6 on it. A six-source velvet ring is a much weaker stimulus
 # and misrepresents what the instrument does.
+#
+# The session presets also carry wander_deg=60 and wander_hz=0.25, but wander
+# acts only on the random_fraction share of a lattice, and every session ran
+# with random_fraction=0. The wander was inert there, so it is set to zero here
+# to keep the configuration honest about what renders.
 N_SOURCES = 9
 RING_RADIUS_M = 2.0
-WANDER_DEG = 60.0
-WANDER_HZ = 0.25
 
 # Two rates on one ring, so a single stopped control serves both of them.
 # A rate slow enough to take the whole passage to come round once is hard to
@@ -59,14 +61,13 @@ def decorr(amount=1.0, per_source=None):
                            envelope="auto", seed=SEED)
 
 
-def ring(rate_deg_per_sec, wander=WANDER_DEG, label="ring"):
+def ring(rate_deg_per_sec, label="ring"):
     """One nine-source ring at the session geometry."""
     return rf.ComponentConfig(
         lattice="polar", rings=1, per_ring=N_SOURCES,
         r_near_m=RING_RADIUS_M, r_far_m=RING_RADIUS_M,
         rotation_deg_per_sec=rate_deg_per_sec,
-        wander_deg=wander, wander_hz=WANDER_HZ,
-        random_fraction=0.0, label=label)
+        wander_deg=0.0, random_fraction=0.0, label=label)
 
 TRACE_FPS = 20                # the monitor is smooth at 20; 60 triples the JSON
 
@@ -107,16 +108,15 @@ def variants(fs):
                  "ring decorrelated measures 0.22. Cancellation is exact for "
                  "an even ring and approximate for this one, which has an odd "
                  "count to match the sessions.",
-            cfg=rf.FieldConfig(components=[ring(SLOW_DEG_PER_SEC, wander=0.0)],
+            cfg=rf.FieldConfig(components=[ring(SLOW_DEG_PER_SEC)],
                                decorr=decorr(0.0), seed=SEED)),
 
         dict(
             id="slow", label="Rotating field, slow",
             short="nine decorrelated sources at 60 degrees per second",
             body="The ring with each source rendered mutually incoherent, so "
-                 "that no individual source can be localized, and with every "
-                 "source wandering 60 degrees about its position at a quarter "
-                 "hertz. The field turns at 60 degrees per second. This is "
+                 "that no individual source can be localized. The field turns "
+                 "at 60 degrees per second. This is "
                  "the configuration the blind sessions recorded in the "
                  "repository were run on, and the condition reported there as "
                  "circling at the top of the confidence scale.",
@@ -138,9 +138,9 @@ def variants(fs):
             short="the same field with time stopped",
             body="The matched control for both rotating variants, made by "
                  "stopping time rather than by zeroing the rates. Every "
-                 "source holds the position and the level it had, the "
-                 "wandering stops along with the rotation, and the spatial "
-                 "and level distribution of the field is preserved exactly. "
+                 "source holds the position and the level it had, so the "
+                 "spatial and level distribution of the field is preserved "
+                 "exactly. "
                  "A single render carries no evidence of motion on its own, "
                  "since the available measures respond to diffuseness as well "
                  "as to movement, so any claim about motion rests on the "
@@ -181,8 +181,7 @@ def variants(fs):
                     lattice="cartesian", cols=6, rows=4,
                     extent_x_m=24.0, extent_y_m=8.0,
                     drift_x_mps=1.0, drift_y_mps=0.0,
-                    wander_deg=WANDER_DEG, wander_hz=WANDER_HZ,
-                    edge_fade=0.35, label="lattice")],
+                    wander_deg=0.0, edge_fade=0.35, label="lattice")],
                 decorr=decorr(1.0), seed=SEED)),
 
         dict(

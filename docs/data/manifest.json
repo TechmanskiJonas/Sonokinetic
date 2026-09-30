@@ -2,7 +2,7 @@
  "passage_secs": 20.0,
  "n_sources": 9,
  "seed": 1,
- "build": 1787073498,
+ "build": 1790795935,
  "beds": [
   {
    "id": "drone",
@@ -74,7 +74,7 @@
    "id": "slow",
    "label": "Rotating field, slow",
    "short": "nine decorrelated sources at 60 degrees per second",
-   "body": "The ring with each source rendered mutually incoherent, so that no individual source can be localized, and with every source wandering 60 degrees about its position at a quarter hertz. The field turns at 60 degrees per second. This is the configuration the blind sessions recorded in the repository were run on, and the condition reported there as circling at the top of the confidence scale.",
+   "body": "The ring with each source rendered mutually incoherent, so that no individual source can be localized. The field turns at 60 degrees per second. This is the configuration the blind sessions recorded in the repository were run on, and the condition reported there as circling at the top of the confidence scale.",
    "has_trace": true,
    "n_sources": 9,
    "rotation_deg_per_sec": 60.0,
@@ -144,7 +144,7 @@
    "id": "static",
    "label": "Static field (control)",
    "short": "the same field with time stopped",
-   "body": "The matched control for both rotating variants, made by stopping time rather than by zeroing the rates. Every source holds the position and the level it had, the wandering stops along with the rotation, and the spatial and level distribution of the field is preserved exactly. A single render carries no evidence of motion on its own, since the available measures respond to diffuseness as well as to movement, so any claim about motion rests on the comparison with this.",
+   "body": "The matched control for both rotating variants, made by stopping time rather than by zeroing the rates. Every source holds the position and the level it had, so the spatial and level distribution of the field is preserved exactly. A single render carries no evidence of motion on its own, since the available measures respond to diffuseness as well as to movement, so any claim about motion rests on the comparison with this.",
    "has_trace": true,
    "n_sources": 9,
    "rotation_deg_per_sec": 0.0,
